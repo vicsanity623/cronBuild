@@ -1,7 +1,6 @@
 # 🏗️ CRONBUILD — Autonomous AI Development Pipeline
 
-> **Build any software project. Automatically. On a schedule.**
-> Your codebase that codes itself — one PR at a time, every cycle.
+> **"The best code is the code that writes itself while you sleep."**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Live Public Demo](https://img.shields.io/badge/Play-LIVE_PUBLIC_DEMO-blue?style=for-the-badge&logo=github)](https://vicsanity623.github.io/rift-arena/)
