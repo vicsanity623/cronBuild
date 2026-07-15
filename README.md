@@ -463,9 +463,9 @@ NEXT: <Feature Name> — <What to build> <Which files> <Expected behavior>
 
 <a href="https://www.star-history.com/?repos=vicsanity623%2FcronBuild&type=date&legend=top-left">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=vicsanity623/cronBuild&type=date&theme=dark&legend=top-left&sealed_token=F5pLuNmnh8WpM74ofrXJ4v-U1s_s6Dg8K-8Xf0SbbSdm-IaksEMfapDNERqGUtPCDzFaTBPXj1Uclf_ZSwz4IhsNjcgOfT8UUXbZYiNusPLN7ebgMV3iPI_TiUJVVu6HJSaixNkefyxZ9dHy8xjFOu6EgRxHVyCM0GrHPHBtE-Wj63AZQzyWepAIIRgO" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=vicsanity623/cronBuild&type=date&legend=top-left&sealed_token=F5pLuNmnh8WpM74ofrXJ4v-U1s_s6Dg8K-8Xf0SbbSdm-IaksEMfapDNERqGUtPCDzFaTBPXj1Uclf_ZSwz4IhsNjcgOfT8UUXbZYiNusPLN7ebgMV3iPI_TiUJVVu6HJSaixNkefyxZ9dHy8xjFOu6EgRxHVyCM0GrHPHBtE-Wj63AZQzyWepAIIRgO" />
-   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=vicsanity623/cronBuild&type=date&legend=top-left&sealed_token=F5pLuNmnh8WpM74ofrXJ4v-U1s_s6Dg8K-8Xf0SbbSdm-IaksEMfapDNERqGUtPCDzFaTBPXj1Uclf_ZSwz4IhsNjcgOfT8UUXbZYiNusPLN7ebgMV3iPI_TiUJVVu6HJSaixNkefyxZ9dHy8xjFOu6EgRxHVyCM0GrHPHBtE-Wj63AZQzyWepAIIRgO" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=vicsanity623/cronBuild&type=date&theme=dark&legend=top-left&sealed_token=xp7TWksBds0qAc9f3n50ZtFb8q_FKT6iREoWqbjxqkvPjTVs6zsnt_mjojsc-i_4WfRJvZUYE_lW1akvwZwpI2jNqLe96AOA8FTdigPhDNf6wXYB02gaSQ" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=vicsanity623/cronBuild&type=date&legend=top-left&sealed_token=xp7TWksBds0qAc9f3n50ZtFb8q_FKT6iREoWqbjxqkvPjTVs6zsnt_mjojsc-i_4WfRJvZUYE_lW1akvwZwpI2jNqLe96AOA8FTdigPhDNf6wXYB02gaSQ" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=vicsanity623/cronBuild&type=date&legend=top-left&sealed_token=xp7TWksBds0qAc9f3n50ZtFb8q_FKT6iREoWqbjxqkvPjTVs6zsnt_mjojsc-i_4WfRJvZUYE_lW1akvwZwpI2jNqLe96AOA8FTdigPhDNf6wXYB02gaSQ" />
  </picture>
 </a>
 
