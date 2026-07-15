@@ -1,0 +1,174 @@
+# =============================================================================
+# CRONBUILD — Autonomous AI Development Pipeline (GitHub Actions)
+# =============================================================================
+# This workflow runs on a schedule, reads MEMORY.md, launches an AI coding
+# agent via opencode, implements features, creates a PR, and merges it — all
+# on GitHub's free runners (2000 min/month).
+#
+# Quick start:
+#   1. Copy this file to your repo at .github/workflows/cronbuild.yml
+#   2. Add your AI API key as a GitHub Secret (Settings → Secrets → Actions)
+#      - OPENROUTER_API_KEY (recommended) — supports 200+ models
+#      - or GOOGLE_GEMINI_API_KEY (free tier available)
+#   3. Ensure MEMORY.md and DIRECTIVES.md exist in your repo root
+#   4. Push — the workflow runs on the cron schedule below
+#   5. Trigger manually: Actions → CRONBUILD → Run workflow
+# =============================================================================
+
+name: CRONBUILD
+
+on:
+  schedule:
+    # Default: every 6 hours. Change to suit your rate limits.
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+    inputs:
+      model:
+        description: 'AI model to use'
+        required: false
+        default: 'opencode/deepseek-v4-flash-free'
+        type: choice
+        options:
+          - opencode/deepseek-v4-flash-free
+          - openrouter/openai/gpt-4o-mini
+          - openrouter/anthropic/claude-3-haiku
+          - openrouter/google/gemini-2.5-flash
+      target:
+        description: 'Override NEXT target (leave blank for autonomous)'
+        required: false
+        default: ''
+        type: string
+
+permissions:
+  contents: write
+  pull-requests: write
+  actions: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Validate project files
+        run: |
+          if [ ! -f MEMORY.md ]; then
+            echo "::error::MEMORY.md not found. Create one first."
+            exit 1
+          fi
+          if [ ! -f DIRECTIVES.md ]; then
+            echo "::error::DIRECTIVES.md not found. Create one first."
+            exit 1
+          fi
+
+      - name: Install opencode
+        run: |
+          curl -fsSL https://opencode.ai/install.sh | bash
+          echo "$HOME/.opencode/bin" >> $GITHUB_PATH
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+      - name: Read project state
+        id: state
+        run: |
+          LAST_DAY=$(grep -o '\[DAY [0-9]*\]' MEMORY.md | tail -1 | grep -o '[0-9]*' || echo "0")
+          NEXT_DAY=$((LAST_DAY + 1))
+          LAST_TARGET=$(grep '| NEXT:' MEMORY.md | tail -1 | sed 's/.*| NEXT: //' || echo "Initial development")
+          TODAY=$(date '+%Y-%m-%d')
+
+          echo "last_day=$LAST_DAY" >> $GITHUB_OUTPUT
+          echo "next_day=$NEXT_DAY" >> $GITHUB_OUTPUT
+          echo "last_target=$LAST_TARGET" >> $GITHUB_OUTPUT
+          echo "today=$TODAY" >> $GITHUB_OUTPUT
+
+      - name: Configure git
+        run: |
+          git config user.name "cronbuild[bot]"
+          git config user.email "cronbuild[bot]@users.noreply.github.com"
+
+      - name: Authenticate gh
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
+
+      - name: Resolve model
+        id: model
+        run: |
+          if [ -n "${{ inputs.model }}" ] && [ "${{ inputs.model }}" != "" ]; then
+            echo "model=${{ inputs.model }}" >> $GITHUB_OUTPUT
+          elif [ -n "${{ secrets.OPENROUTER_API_KEY }}" ]; then
+            echo "model=openrouter/${{ secrets.OPENROUTER_MODEL || 'openai/gpt-4o-mini' }}" >> $GITHUB_OUTPUT
+          elif [ -n "${{ secrets.GOOGLE_GEMINI_API_KEY }}" ]; then
+            echo "model=google/gemini-2.5-flash" >> $GITHUB_OUTPUT
+          else
+            echo "model=opencode/deepseek-v4-flash-free" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Run autonomous build
+        id: build
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          GOOGLE_GEMINI_API_KEY: ${{ secrets.GOOGLE_GEMINI_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          LAST_DAY=${{ steps.state.outputs.last_day }}
+          NEXT_DAY=${{ steps.state.outputs.next_day }}
+          TODAY=${{ steps.state.outputs.today }}
+          LAST_TARGET="${{ steps.state.outputs.last_target }}"
+          MODEL="${{ steps.model.outputs.model }}"
+          OVERRIDE_TARGET="${{ inputs.target }}"
+
+          if [ -n "$OVERRIDE_TARGET" ]; then
+            LAST_TARGET="$OVERRIDE_TARGET"
+          fi
+
+          PROMPT="You are AI-1 (Developer and Merge Master), an autonomous developer agent.
+
+    CRITICAL: You are in AUTO-APPROVE mode. Execute commands immediately. Never ask for permission.
+
+    Goal: implement Day $NEXT_DAY features, create a PR, squash-merge, update MEMORY.md.
+
+    Context:
+    - Today: $TODAY
+    - Day $NEXT_DAY (Last: $LAST_DAY)
+    - Target: $LAST_TARGET
+    - Git remote: origin (already configured)
+    - gh is authenticated with GITHUB_TOKEN
+
+    Execute:
+    1. Read MEMORY.md and DIRECTIVES.md
+    2. Implement '$LAST_TARGET' incrementally
+    3. git checkout -b day-$NEXT_DAY-feature
+    4. git add . && git commit -m 'feat: day $NEXT_DAY implementation'
+    5. git push -u origin day-$NEXT_DAY-feature
+    6. gh pr create --title 'Day $NEXT_DAY: $LAST_TARGET' --body 'Automated build via CRONBUILD.'
+    7. gh pr merge --squash --delete-branch
+    8. git checkout main && git pull origin main
+    9. Append to MEMORY.md: [DAY $NEXT_DAY] | $TODAY | <completed features> | NEXT: <next target>
+    10. git add MEMORY.md && git commit -m 'day $NEXT_DAY memory update' && git push origin main
+
+    Rules:
+    - AUTO-APPROVE: Never ask for permission.
+    - Do NOT rewrite the whole project. Be incremental.
+    - If merge fails, fix conflicts and retry.
+    - The PR MUST be merged and MEMORY.md MUST be updated on main."
+
+          opencode run "$PROMPT" --model "$MODEL" --auto 2>&1
+
+      - name: Verify memory advancement
+        run: |
+          git pull origin main
+          CURRENT_DAY=$(grep -o '\[DAY [0-9]*\]' MEMORY.md | tail -1 | grep -o '[0-9]*' || echo "0")
+          TARGET_DAY=${{ steps.state.outputs.next_day }}
+
+          if [ "$CURRENT_DAY" -ge "$TARGET_DAY" ]; then
+            echo "✅ SUCCESS: Memory advanced to Day $CURRENT_DAY"
+          else
+            echo "⚠️ Memory not advanced (current: Day $CURRENT_DAY, target: Day $TARGET_DAY)"
+            echo "The workflow finished but the build may not have completed."
+            echo "Check the logs above for details."
+          fi
