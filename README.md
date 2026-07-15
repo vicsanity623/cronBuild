@@ -4,6 +4,7 @@
 > Your codebase that codes itself — one PR at a time, every cycle.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Live Public Demo](https://img.shields.io/badge/Play-LIVE_PUBLIC_DEMO-blue?style=for-the-badge&logo=github)](https://vicsanity623.github.io/rift-arena/)
 
 ---
 
