@@ -4,6 +4,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Live Public Demo](https://img.shields.io/badge/Play-LIVE_PUBLIC_DEMO-blue?style=for-the-badge&logo=github)](https://vicsanity623.github.io/rift-arena/)
+[![GitHub Repo stars](https://img.shields.io/github/stars/vicsanity623/cronBuild?style=for-the-badge&color=gold)](https://github.com/vicsanity623/cronBuild/stargazers)
 
 ---
 
