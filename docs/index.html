@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,20 +20,32 @@
       --radius: 8px;
       --mono: 'SF Mono', 'Fira Code', monospace;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
       background: var(--bg);
       color: var(--text);
       font-family: -apple-system, 'Segoe UI', system-ui, sans-serif;
       line-height: 1.6;
     }
-    .container { max-width: 760px; margin: 0 auto; padding: 40px 20px; }
+
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
 
     /* Hero */
     .hero {
       text-align: center;
       padding: 60px 0 40px;
     }
+
     .hero h1 {
       font-size: 3rem;
       font-weight: 800;
@@ -41,6 +54,7 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
+
     .hero p {
       font-size: 1.15rem;
       color: var(--dim);
@@ -65,6 +79,7 @@
       padding: 24px;
       margin-bottom: 20px;
     }
+
     .card h2 {
       font-size: 1rem;
       font-weight: 600;
@@ -73,12 +88,26 @@
       align-items: center;
       gap: 8px;
     }
-    .card p, .card li { color: var(--dim); font-size: 0.9rem; }
-    .card ul { padding-left: 20px; }
-    .card li { margin-bottom: 6px; }
+
+    .card p,
+    .card li {
+      color: var(--dim);
+      font-size: 0.9rem;
+    }
+
+    .card ul {
+      padding-left: 20px;
+    }
+
+    .card li {
+      margin-bottom: 6px;
+    }
 
     /* Steps */
-    .step { counter-increment: step; }
+    .step {
+      counter-increment: step;
+    }
+
     .step::before {
       content: counter(step);
       background: var(--cyan);
@@ -108,21 +137,31 @@
       text-decoration: none;
       transition: all 0.2s;
     }
+
     .btn-primary {
       background: linear-gradient(135deg, var(--gold), #e2a800);
       color: #000;
     }
+
     .btn-primary:hover {
       transform: translateY(-1px);
-      box-shadow: 0 4px 20px rgba(240,192,64,0.3);
+      box-shadow: 0 4px 20px rgba(240, 192, 64, 0.3);
     }
+
     .btn-ghost {
       background: transparent;
       color: var(--cyan);
       border: 1px solid var(--border);
     }
-    .btn-ghost:hover { border-color: var(--cyan); }
-    .btn-center { text-align: center; margin: 30px 0; }
+
+    .btn-ghost:hover {
+      border-color: var(--cyan);
+    }
+
+    .btn-center {
+      text-align: center;
+      margin: 30px 0;
+    }
 
     /* Stat boxes */
     .stats {
@@ -131,6 +170,7 @@
       gap: 12px;
       margin: 30px 0;
     }
+
     .stat-box {
       background: var(--card);
       border: 1px solid var(--border);
@@ -138,11 +178,13 @@
       padding: 16px;
       text-align: center;
     }
+
     .stat-box .num {
       font-size: 1.8rem;
       font-weight: 700;
       color: var(--green);
     }
+
     .stat-box .label {
       font-size: 0.8rem;
       color: var(--dim);
@@ -150,10 +192,12 @@
     }
 
     /* Code */
-    code, pre {
+    code,
+    pre {
       font-family: var(--mono);
       font-size: 0.82rem;
     }
+
     pre {
       background: #010409;
       border: 1px solid var(--border);
@@ -163,8 +207,14 @@
       color: var(--text);
       line-height: 1.5;
     }
-    code { color: var(--orange); }
-    pre code { color: var(--text); }
+
+    code {
+      color: var(--orange);
+    }
+
+    pre code {
+      color: var(--text);
+    }
 
     /* Footer */
     .footer {
@@ -175,7 +225,10 @@
       border-top: 1px solid var(--border);
       margin-top: 40px;
     }
-    .footer a { color: var(--cyan); }
+
+    .footer a {
+      color: var(--cyan);
+    }
 
     /* Diagram */
     .diagram {
@@ -191,8 +244,14 @@
       margin: 20px 0;
       color: var(--dim);
     }
-    .diagram .hl { color: var(--green); }
-    .diagram .hl2 { color: var(--gold); }
+
+    .diagram .hl {
+      color: var(--green);
+    }
+
+    .diagram .hl2 {
+      color: var(--gold);
+    }
 
     /* Workflow preview scroll */
     .workflow-preview {
@@ -201,99 +260,110 @@
     }
 
     @media (max-width: 600px) {
-      .hero h1 { font-size: 2rem; }
-      .stats { grid-template-columns: 1fr; }
-      .diagram { font-size: 0.65rem; }
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .diagram {
+        font-size: 0.65rem;
+      }
     }
   </style>
 </head>
+
 <body>
 
-<div class="container">
+  <div class="container">
 
-  <!-- Hero -->
-  <div class="hero">
-    <h1>CRONBUILD</h1>
-    <p>Your codebase that codes itself — one PR at a time, every cycle. Plug it into any GitHub repo and watch it build itself automatically.</p>
-  </div>
-  <div class="tagline">⚡ Zero servers · Zero maintenance · One workflow file</div>
-
-  <!-- Stats -->
-  <div class="stats">
-    <div class="stat-box">
-      <div class="num">2000</div>
-      <div class="label">Free minutes/month</div>
+    <!-- Hero -->
+    <div class="hero">
+      <h1>CRONBUILD</h1>
+      <p>Your codebase that codes itself — one PR at a time, every cycle. Plug it into any GitHub repo and watch it
+        build itself automatically.</p>
     </div>
-    <div class="stat-box">
-      <div class="num">3</div>
-      <div class="label">Model fallback tiers</div>
+    <div class="tagline">⚡ Zero servers · Zero maintenance · One workflow file</div>
+
+    <!-- Stats -->
+    <div class="stats">
+      <div class="stat-box">
+        <div class="num">2000</div>
+        <div class="label">Free minutes/month</div>
+      </div>
+      <div class="stat-box">
+        <div class="num">3</div>
+        <div class="label">Model fallback tiers</div>
+      </div>
+      <div class="stat-box">
+        <div class="num">10</div>
+        <div class="label">Auto-retries per day</div>
+      </div>
     </div>
-    <div class="stat-box">
-      <div class="num">10</div>
-      <div class="label">Auto-retries per day</div>
+
+    <!-- CTA -->
+    <div class="btn-center">
+      <a href="https://github.com/vicsanity623/cronBuild/generate" class="btn btn-primary" target="_blank">
+        ⚡ Use Template — Start Building
+      </a>
     </div>
-  </div>
+    <p style="text-align:center;color:var(--dim);font-size:0.85rem;">
+      Already have a repo?
+      <a href="#add-to-existing" style="color:var(--cyan);">Add the workflow file</a>
+    </p>
 
-  <!-- CTA -->
-  <div class="btn-center">
-    <a href="https://github.com/vicsanity623/cronBuild/generate" class="btn btn-primary" target="_blank">
-      ⚡ Use Template — Start Building
-    </a>
-  </div>
-  <p style="text-align:center;color:var(--dim);font-size:0.85rem;">
-    Already have a repo?
-    <a href="#add-to-existing" style="color:var(--cyan);">Add the workflow file</a>
-  </p>
+    <!-- How it works -->
+    <h2 style="margin: 40px 0 12px;">How It Works</h2>
+    <div class="diagram">
+      <span class="hl2">CRON</span> fires → <span class="hl2">Workflow</span> starts → Checkout repo
+      ↓
+      Install <span class="hl">opencode</span> + authenticate <span class="hl">gh</span>
+      ↓
+      Read <span class="hl">MEMORY.md</span> → "Day 3. Next: Build Forge System"
+      ↓
+      Launch <span class="hl">AI Agent</span> with full project context
+      ↓
+      <span class="hl2">┌─────────────────────────────────────┐</span>
+      <span class="hl2">│ Agent implements target feature │</span>
+      <span class="hl2">│ git branch → commit → push │</span>
+      <span class="hl2">│ gh pr create → gh pr merge │</span>
+      <span class="hl2">│ Update MEMORY.md with next target │</span>
+      <span class="hl2">└─────────────────────────────────────┘</span>
+      ↓
+      Push to <span class="hl">main</span> → Wait for next <span class="hl2">CRON</span> tick 🔁
+    </div>
 
-  <!-- How it works -->
-  <h2 style="margin: 40px 0 12px;">How It Works</h2>
-  <div class="diagram">
-<span class="hl2">CRON</span> fires → <span class="hl2">Workflow</span> starts → Checkout repo
-    ↓
-Install <span class="hl">opencode</span> + authenticate <span class="hl">gh</span>
-    ↓
-Read <span class="hl">MEMORY.md</span> → "Day 3. Next: Build Forge System"
-    ↓
-Launch <span class="hl">AI Agent</span> with full project context
-    ↓
-<span class="hl2">┌─────────────────────────────────────┐</span>
-<span class="hl2">│  Agent implements target feature     │</span>
-<span class="hl2">│  git branch → commit → push          │</span>
-<span class="hl2">│  gh pr create → gh pr merge          │</span>
-<span class="hl2">│  Update MEMORY.md with next target   │</span>
-<span class="hl2">└─────────────────────────────────────┘</span>
-    ↓
-Push to <span class="hl">main</span> → Wait for next <span class="hl2">CRON</span> tick 🔁
-  </div>
+    <!-- Three tiers -->
+    <h2 style="margin: 40px 0 12px;">Three-Tier AI Cascade</h2>
+    <p style="font-size:0.9rem;color:var(--dim);margin-bottom:16px;">
+      Never gets stuck. Each tier can use a different model. If one is rate-limited or down, the next kicks in
+      automatically.
+    </p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
+      <div class="card">
+        <h2>🥇 Tier 1</h2>
+        <p><strong>OpenRouter</strong> — 200+ models (Claude, GPT-4, Gemini...). One API key for everything.</p>
+      </div>
+      <div class="card">
+        <h2>🥈 Tier 2</h2>
+        <p><strong>Google Gemini</strong> — Generous free tier. Fallback when Tier 1 is rate-limited.</p>
+      </div>
+      <div class="card">
+        <h2>🥉 Tier 3</h2>
+        <p><strong>Local Ollama</strong> — Offline, unlimited. Runs on your machine, zero API cost.</p>
+      </div>
+    </div>
 
-  <!-- Three tiers -->
-  <h2 style="margin: 40px 0 12px;">Three-Tier AI Cascade</h2>
-  <p style="font-size:0.9rem;color:var(--dim);margin-bottom:16px;">
-    Never gets stuck. Each tier can use a different model. If one is rate-limited or down, the next kicks in automatically.
-  </p>
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
+    <!-- Quick setup -->
+    <h2 id="add-to-existing" style="margin: 40px 0 12px;">Install in 2 Minutes</h2>
+
     <div class="card">
-      <h2>🥇 Tier 1</h2>
-      <p><strong>OpenRouter</strong> — 200+ models (Claude, GPT-4, Gemini...). One API key for everything.</p>
-    </div>
-    <div class="card">
-      <h2>🥈 Tier 2</h2>
-      <p><strong>Google Gemini</strong> — Generous free tier. Fallback when Tier 1 is rate-limited.</p>
-    </div>
-    <div class="card">
-      <h2>🥉 Tier 3</h2>
-      <p><strong>Local Ollama</strong> — Offline, unlimited. Runs on your machine, zero API cost.</p>
-    </div>
-  </div>
-
-  <!-- Quick setup -->
-  <h2 id="add-to-existing" style="margin: 40px 0 12px;">Install in 2 Minutes</h2>
-
-  <div class="card">
-    <h2 class="step">Add the workflow file</h2>
-    <p>Create <code>.github/workflows/cronbuild.yml</code> in your repo with this content:</p>
-    <div class="workflow-preview">
-<pre><a href="https://github.com/vicsanity623/cronBuild/new/main?filename=.github/workflows/cronbuild.yml" target="_blank" style="float:right;font-size:0.8rem;color:var(--cyan);">Create in your repo →</a>name: CRONBUILD
+      <h2 class="step">Add the workflow file</h2>
+      <p>Create <code>.github/workflows/cronbuild.yml</code> in your repo with this content:</p>
+      <div class="workflow-preview">
+        <pre><a href="https://github.com/vicsanity623/cronBuild/raw/main/template/cronbuild.yml" target="_blank" style="float:right;font-size:0.8rem;color:var(--cyan);">Download raw file →</a>name: CRONBUILD
 on:
   schedule:
     - cron: '0 */6 * * *'
@@ -335,31 +405,36 @@ jobs:
     Implement, branch, PR, merge, update MEMORY.md. AUTO-APPROVE."
 
           opencode run "$PROMPT" --model "$MODEL" --auto</pre>
+      </div>
     </div>
-  </div>
 
-  <div class="card">
-    <h2 class="step">Add your API key as a GitHub Secret</h2>
-    <p>Go to your repo → <strong>Settings → Secrets and variables → Actions</strong> → Add these secrets:</p>
-    <ul>
-      <li><code>OPENROUTER_API_KEY</code> — <a href="https://openrouter.ai/keys" target="_blank" style="color:var(--cyan);">Get one free</a> (supports 200+ models)</li>
-      <li><em>or</em> <code>GOOGLE_GEMINI_API_KEY</code> — <a href="https://aistudio.google.com/apikey" target="_blank" style="color:var(--cyan);">Free tier</a></li>
-    </ul>
-  </div>
+    <div class="card">
+      <h2 class="step">Add your API key as a GitHub Secret</h2>
+      <p>Go to your repo → <strong>Settings → Secrets and variables → Actions</strong> → Add these secrets:</p>
+      <ul>
+        <li><code>OPENROUTER_API_KEY</code> — <a href="https://openrouter.ai/keys" target="_blank"
+            style="color:var(--cyan);">Get one free</a> (supports 200+ models)</li>
+        <li><em>or</em> <code>GOOGLE_GEMINI_API_KEY</code> — <a href="https://aistudio.google.com/apikey"
+            target="_blank" style="color:var(--cyan);">Free tier</a></li>
+      </ul>
+    </div>
 
-  <div class="card">
-    <h2 class="step">Create MEMORY.md and DIRECTIVES.md</h2>
-    <p>These tell the AI what to build and how to behave. Templates in the <a href="https://github.com/vicsanity623/cronBuild" style="color:var(--cyan);">CRONBUILD repo</a>.</p>
-  </div>
+    <div class="card">
+      <h2 class="step">Create MEMORY.md and DIRECTIVES.md</h2>
+      <p>These tell the AI what to build and how to behave. Templates in the <a
+          href="https://github.com/vicsanity623/cronBuild/tree/main/examples/web-game"
+          style="color:var(--cyan);">CRONBUILD repo</a>.</p>
+    </div>
 
-  <div class="card">
-    <h2 class="step">Trigger it</h2>
-    <p>Push your changes. The workflow runs on schedule, or you can <strong>manually trigger</strong> it from the Actions tab. Watch your repo build itself.</p>
-  </div>
+    <div class="card">
+      <h2 class="step">Trigger it</h2>
+      <p>Push your changes. The workflow runs on schedule, or you can <strong>manually trigger</strong> it from the
+        Actions tab. Watch your repo build itself.</p>
+    </div>
 
-  <!-- MEMORY.md example -->
-  <h2 style="margin: 40px 0 12px;">Example MEMORY.md</h2>
-  <pre>
+    <!-- MEMORY.md example -->
+    <h2 style="margin: 40px 0 12px;">Example MEMORY.md</h2>
+    <pre>
 # PROJECT MEMORY LOG
 *Format: [DAY X] | [DATE] | [COMPLETED] | [NEXT DAY TARGET]*
 
@@ -368,31 +443,37 @@ CRONBUILD autonomous pipeline. | NEXT: User Authentication —
 Add login/signup pages, JWT tokens, password hashing, and
 session management in a new auth module.
   </pre>
-  <p style="font-size:0.85rem;color:var(--dim);margin-top:8px;">
-    The AI <strong>autonomously writes its own NEXT targets</strong> by auditing your codebase after each build cycle. No manual editing needed — but you can override any time.
-  </p>
-
-  <!-- Docs -->
-  <h2 style="margin: 40px 0 12px;">Documentation</h2>
-  <div class="card">
-    <ul>
-      <li><a href="https://github.com/vicsanity623/cronBuild/blob/main/README.md" style="color:var(--cyan);">Full README</a> — architecture, API keys, troubleshooting</li>
-      <li><a href="https://github.com/vicsanity623/cronBuild/blob/main/DIRECTIVES.md" style="color:var(--cyan);">DIRECTIVES.md template</a> — AI behavior rules</li>
-      <li><a href="https://github.com/vicsanity623/cronBuild/blob/main/autonomous.sh" style="color:var(--cyan);">autonomous.sh</a> — the core engine (same logic runs in CI)</li>
-      <li><a href="https://github.com/vicsanity623/cronBuild/discussions" style="color:var(--cyan);">Discussions</a> — ask questions, share builds</li>
-    </ul>
-  </div>
-
-  <!-- Footer -->
-  <div class="footer">
-    <p>
-      <a href="https://github.com/vicsanity623/cronBuild">GitHub</a> ·
-      <a href="https://nosignups.net">nosignups.net</a> ·
-      <a href="https://github.com/vicsanity623/cronBuild/blob/main/LICENSE">MIT</a>
+    <p style="font-size:0.85rem;color:var(--dim);margin-top:8px;">
+      The AI <strong>autonomously writes its own NEXT targets</strong> by auditing your codebase after each build cycle.
+      No manual editing needed — but you can override any time.
     </p>
-    <p style="margin-top:8px;">Built with ❤️ for the autonomous development movement.</p>
-  </div>
 
-</div>
+    <!-- Docs -->
+    <h2 style="margin: 40px 0 12px;">Documentation</h2>
+    <div class="card">
+      <ul>
+        <li><a href="https://github.com/vicsanity623/cronBuild/blob/main/README.md" style="color:var(--cyan);">Full
+            README</a> — architecture, API keys, troubleshooting</li>
+        <li><a href="https://github.com/vicsanity623/cronBuild/tree/main/examples/web-game"
+            style="color:var(--cyan);">EXAMPLE templates</a> — AI behavior rules</li>
+        <li><a href="https://github.com/vicsanity623/cronBuild/blob/main/autonomous.sh"
+            style="color:var(--cyan);">autonomous.sh</a> — the core engine (same logic runs in CI)</li>
+        <li><a href="https://github.com/vicsanity623/cronBuild/discussions" style="color:var(--cyan);">Discussions</a> —
+          ask questions, share builds</li>
+      </ul>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>
+        <a href="https://github.com/vicsanity623/cronBuild">GitHub</a> ·
+        <a href="https://nosignups.net">nosignups.net</a> ·
+        <a href="https://github.com/vicsanity623/cronBuild/blob/main/LICENSE">MIT</a>
+      </p>
+      <p style="margin-top:8px;">Built with ❤️ for the autonomous development movement, by Vic.</p>
+    </div>
+
+  </div>
 </body>
+
 </html>
