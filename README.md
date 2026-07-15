@@ -19,6 +19,60 @@ CRONBUILD is a **fully autonomous software development engine** that uses AI age
 6. **Retries** on failure — guaranteeing forward progress through a 3-tier model cascade
 7. **Compacts** memory when it grows too large to prevent context window overflow
 
+---
+
+## 🎯 Use Cases
+
+CRONBUILD can autonomously build **any software project**:
+
+| Category | Examples |
+|----------|----------|
+| **Web Apps** | SaaS platforms, dashboards, e-commerce, social networks |
+| **Games** | Browser games, mobile games, game backends |
+| **APIs** | REST APIs, GraphQL servers, microservices |
+| **CLI Tools** | Terminal applications, dev tools, automation scripts |
+| **DevOps** | Infrastructure as Code, deployment pipelines, monitoring |
+| **Mobile Apps** | React Native, Flutter (via opencode's mobile support) |
+| **AI/ML** | Model training pipelines, data processing, inference servers |
+| **Open Source** | Libraries, frameworks, plugins, extensions |
+| **Prototypes** | MVP generation, concept validation, rapid iteration |
+
+### Example: Build a Web Game in 2 Weeks
+
+```
+Day 1:  Project setup, basic HTML/CSS, game canvas
+Day 2:  Player movement, collision detection
+Day 3:  Enemy AI, spawning system
+Day 4:  Scoring, lives, game over screen
+Day 5:  Power-ups, particle effects
+Day 6:  Sound effects, music
+Day 7:  Leaderboard (local storage)
+Day 8:  Mobile responsive design
+Day 9:  Settings menu, difficulty levels
+Day 10: Achievement system
+Day 11: Polish — animations, transitions
+Day 12: Performance optimization
+Day 13: PWA support (offline, install)
+Day 14: Final polish, README, deployment
+```
+
+### Example: Build a SaaS Backend in 1 Week
+
+```
+Day 1:  Auth system (signup/login/JWT)
+Day 2:  User profiles, roles, permissions
+Day 3:  CRUD API for core resources
+Day 4:  Database migrations, seeding
+Day 5:  Email notifications (SendGrid)
+Day 6:  Payment integration (Stripe)
+Day 7:  Admin dashboard, analytics
+Day 8:  Rate limiting, caching, performance
+Day 9:  Tests, CI/CD pipeline
+Day 10: Documentation, deployment
+```
+
+---
+
 ### One-Click Operation
 
 ```
@@ -312,60 +366,6 @@ tail -5 ~/.cronbuild/cronbuild.log
 ========================================
 ```
 
----
-
-## 🎯 Use Cases
-
-CRONBUILD can autonomously build **any software project**:
-
-| Category | Examples |
-|----------|----------|
-| **Web Apps** | SaaS platforms, dashboards, e-commerce, social networks |
-| **Games** | Browser games, mobile games, game backends |
-| **APIs** | REST APIs, GraphQL servers, microservices |
-| **CLI Tools** | Terminal applications, dev tools, automation scripts |
-| **DevOps** | Infrastructure as Code, deployment pipelines, monitoring |
-| **Mobile Apps** | React Native, Flutter (via opencode's mobile support) |
-| **AI/ML** | Model training pipelines, data processing, inference servers |
-| **Open Source** | Libraries, frameworks, plugins, extensions |
-| **Prototypes** | MVP generation, concept validation, rapid iteration |
-
-### Example: Build a Web Game in 2 Weeks
-
-```
-Day 1:  Project setup, basic HTML/CSS, game canvas
-Day 2:  Player movement, collision detection
-Day 3:  Enemy AI, spawning system
-Day 4:  Scoring, lives, game over screen
-Day 5:  Power-ups, particle effects
-Day 6:  Sound effects, music
-Day 7:  Leaderboard (local storage)
-Day 8:  Mobile responsive design
-Day 9:  Settings menu, difficulty levels
-Day 10: Achievement system
-Day 11: Polish — animations, transitions
-Day 12: Performance optimization
-Day 13: PWA support (offline, install)
-Day 14: Final polish, README, deployment
-```
-
-### Example: Build a SaaS Backend in 1 Week
-
-```
-Day 1:  Auth system (signup/login/JWT)
-Day 2:  User profiles, roles, permissions
-Day 3:  CRUD API for core resources
-Day 4:  Database migrations, seeding
-Day 5:  Email notifications (SendGrid)
-Day 6:  Payment integration (Stripe)
-Day 7:  Admin dashboard, analytics
-Day 8:  Rate limiting, caching, performance
-Day 9:  Tests, CI/CD pipeline
-Day 10: Documentation, deployment
-```
-
----
-
 ## ❓ Troubleshooting
 
 | Problem | Solution |
@@ -392,19 +392,38 @@ git add MEMORY.md && git commit -m "reset: fresh start" && git push
 
 ---
 
-## 🧠 How to Write Great MEMORY.md Targets
+## 🧠 How CRONBUILD Writes Its Own NEXT Targets (Autonomous Ideation)
 
-The quality of CRONBUILD's output depends on your `NEXT:` target. Good targets are:
+**You never need to manually edit MEMORY.md.** The AI agent autonomously determines what to build next by:
 
-| ❌ Bad | ✅ Good |
-|--------|---------|
-| "Add more features" | "Add user profile page with avatar upload, bio field, and settings form in /app/profile/page.tsx" |
-| "Fix bugs" | "Fix login timeout bug — session expires after 5 min instead of 24h in /lib/auth.ts line 42" |
-| "Improve UI" | "Add dark mode toggle with localStorage persistence, CSS variables, and system preference detection" |
-| "Make it better" | "Add pagination to /api/users endpoint with cursor-based pagination, limit/offset params, and total count" |
+1. **Reading MEMORY.md** — understands what was built so far
+2. **Auditing the source files** — identifies gaps, missing features, technical debt
+3. **Thinking creatively** — proposes the next incremental feature that fits the project's scope
 
-**Formula for a perfect target:**
-`NEXT: <Feature Name> — <What to build> <Which files> <Expected behavior>`
+This happens automatically at the end of every cycle. The agent appends a line like:
+
+```
+[DAY 5] | 2026-07-14 | Forge Enhancement System — gear upgrade UI, success chance scaling, +N visual indicators, max level 10. | NEXT: Journey Mode — single-creature auto-runner with scrolling background, stage-based enemies, boss scaling, HP refill between stages, gold/gem/XP rewards.
+```
+
+### Optional: Take Manual Control
+
+If you want to **steer development in a specific direction**, just overwrite the `NEXT:` target in MEMORY.md before the next cron cycle. The agent will follow your instructions instead of thinking for itself.
+
+```
+NEXT: <Feature Name> — <What to build> <Which files> <Expected behavior>
+```
+
+**Example manual targets:**
+
+| Type | Example |
+|------|---------|
+| Feature | `NEXT: User Profiles — Add profile page at /profile with avatar upload, bio, settings form.` |
+| Bug Fix | `NEXT: Fix Login Timeout — Session expires after 5 min instead of 24h in /lib/auth.ts line 42.` |
+| Polish | `NEXT: Dark Mode — CSS variables, localStorage persistence, system preference detection.` |
+| Growth | `NEXT: Pagination — Cursor-based pagination on /api/users with limit/offset and total count.` |
+
+**Not writing a `NEXT:` target?** The AI fills the gap autonomously. No action required.
 
 ---
 
